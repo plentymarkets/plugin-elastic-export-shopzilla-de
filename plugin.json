@@ -3,11 +3,11 @@
   "namespace": "ElasticExportShopzillaDE",
   "type": "export",
   "serviceProvider": "ElasticExportShopzillaDE\\ElasticExportShopzillaDEServiceProvider",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
   "pluginIcon": "icon_plugin_md.png",
   "price": 0.00,
-  "description": "This plugin adds the format Rakuten.de to the Elastic Export.",
+  "description": "This plugin adds the format Shopzilla.de to the Elastic Export.",
   "shortDescription": {
     "de": "Das Plugin ElasticExportShopzillaDE fügt das Datenformat ShopzillaDE zum Elastischen Export hinzu.",
     "en": "This plugin adds the format ShopzillaDE to the Elastic Export."
