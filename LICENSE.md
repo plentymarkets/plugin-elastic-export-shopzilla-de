@@ -1,4 +1,4 @@
-plentymarkets plugin ElasticExportShopzillaDE
+plentymarkets plugin Elastic Export Shopzilla.de
 
 Copyright © 2016 plentymarkets GmbH
 
