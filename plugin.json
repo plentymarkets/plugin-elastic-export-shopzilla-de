@@ -16,5 +16,9 @@
     "3523"
   ],
   "author": "plentymarkets GmbH",
-  "authorIcon": "icon_author_xs.png"
+  "authorIcon": "icon_author_xs.png",
+  "marketplaceName": {
+    "de": "shopzilla.de",
+    "en": "shopzilla.de"
+  }
 }
