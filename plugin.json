@@ -3,7 +3,7 @@
   "namespace": "ElasticExportShopzillaDE",
   "type": "export",
   "serviceProvider": "ElasticExportShopzillaDE\\ElasticExportShopzillaDEServiceProvider",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
   "pluginIcon": "icon_plugin_md.png",
   "price": 0.00,
@@ -15,6 +15,9 @@
   "categories": [
     "3523"
   ],
+  "dependencies": {
+    "ElasticExport": ">=1.0.18"
+  },
   "author": "plentymarkets GmbH",
   "authorIcon": "icon_author_xs.png",
   "marketplaceName": {
