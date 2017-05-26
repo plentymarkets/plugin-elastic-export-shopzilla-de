@@ -3,7 +3,7 @@
 ## v1.0.2 (2017-05-26)
 
 ### Changed
-- The plugin Elastic Export is now required to use the plugin format Shopzilla.de.
+- The plugin Elastic Export is now required to use the plugin format ShopzillaDE.
 
 ## v1.0.1 (2017-03-22)
 

@@ -3,7 +3,7 @@
 ## v1.0.2 (2017-05-26)
 
 ### Geändert
-- Das Plugin Elastic Export ist nun Voraussetzung zur Nutzung des Pluginformats Shopzilla.de.
+- Das Plugin Elastic Export ist nun Voraussetzung zur Nutzung des Pluginformats ShopzillaDE.
 
 ## v1.0.1 (2017-03-22)
 
