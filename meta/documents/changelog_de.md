@@ -1,5 +1,16 @@
 # Release Notes für Elastic Export Shopzilla.de
 
+## v1.0.3 (2017-07-11)
+
+### Geändert
+- Das Plugin Elastic Export ist nun Voraussetzung zur Nutzung des Pluginformats ShopzillaDE.
+
+### Behoben
+- Es wurde ein Fehler behoben, der dazu geführt hat, dass bei dem Barcode die Marktplatzverfügbarkeit ignoriert wurde.
+- Es wurde ein Fehler behoben, bei dem der Bestand nicht korrekt ausgewertet wurde.
+- Es wurde ein Fehler behoben, bei dem Varianten nicht in der richtigen Reihenfolge gelistet wurden.
+- Es wurde ein Fehler behoben, der dazu geführt hat, dass das Exportformat Texte in der falschen Sprache exportierte.
+
 ## v1.0.2 (2017-05-29)
 
 ### Geändert
