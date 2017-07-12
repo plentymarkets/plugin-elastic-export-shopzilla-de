@@ -20,7 +20,7 @@ class ShopzillaDE extends CSVPluginGenerator
 {
     use Loggable;
 
-    const DELIMITER = "\t"; // TAB
+    const DELIMITER = " "; // SPACE
 
     /**
      * @var ElasticExportCoreHelper
@@ -88,10 +88,12 @@ class ShopzillaDE extends CSVPluginGenerator
 
             do
             {
+                // Current number of lines written
                 $this->getLogger(__METHOD__)->debug('ElasticExportShopzillaDE::logs.writtenLines', [
                     'Lines written' => $limit,
                 ]);
 
+                // Stop writing if limit is reached
                 if($limitReached === true)
                 {
                     break;
@@ -220,11 +222,8 @@ class ShopzillaDE extends CSVPluginGenerator
         $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
 
         // Only variations with the Retail Price greater than zero will be handled
-        if(!is_null($priceList['price']) && $priceList['price'] > 0)
+        if(!is_null($priceList['price']) && (float)$priceList['price'] > 0)
         {
-            // Set the Retail Price for Base Price calculation
-            $price['variationRetailPrice.price'] = $priceList['price'];
-
             $data = [
                 'Kategorie'         => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
                 'Hersteller'        => $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']),
@@ -232,7 +231,7 @@ class ShopzillaDE extends CSVPluginGenerator
                 'Beschreibung'      => $this->elasticExportHelper->getMutatedDescription($variation, $settings, 256),
                 'Artikel-URL'       => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
                 'Bild-URL'          => $this->elasticExportHelper->getMainImage($variation, $settings),
-                'SKU'               => $this->elasticExportHelper->generateSku($variation['id'], $settings->get('referrerId'), 0, (string)$variation['data']['skus'][0]['sku']),
+                'SKU'               => $this->getSku($variation, $settings->get('referrerId')),
                 'Bestand'           => 'Auf Lager',
                 'Versandgewicht'    => $variation['data']['variation']['weightG'],
                 'Zustand'           => 'Neu',
@@ -241,7 +240,7 @@ class ShopzillaDE extends CSVPluginGenerator
                 'Werbetext'         => '2',
                 'EAN'               => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
                 'Preis'             => $priceList['price'],
-                'Grundpreis'        => $this->elasticExportHelper->getBasePrice($variation, $price, $settings->get('lang')),
+                'Grundpreis'        => $this->elasticExportPriceHelper->getBasePrice($variation, (float)$priceList['price'], $settings->get('lang')),
             ];
 
             $this->addCSVContent(array_values($data));
@@ -253,6 +252,24 @@ class ShopzillaDE extends CSVPluginGenerator
             ]);
         }
     }
+
+    /**
+     * Get the variation SKU.
+     *
+     * @param array $variation
+     * @param float $marketReferrer
+     * @return string
+     */
+    private function getSku(array $variation, float $marketReferrer):string
+    {
+        if(!isset($variation['data']['skus'][0]['sku']) || $variation['data']['skus'][0]['sku'] === null)
+        {
+            return (string)$this->elasticExportHelper->generateSku($variation['id'], (float)$marketReferrer, 0, (string)$variation['id']);
+        }
+
+        return (string)$this->elasticExportHelper->generateSku($variation['id'], (float)$marketReferrer, 0, (string)$variation['data']['skus'][0]['sku']);
+    }
+
 
     /**
      * Get the shipping cost.
