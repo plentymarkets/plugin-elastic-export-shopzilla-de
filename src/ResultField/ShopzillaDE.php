@@ -166,11 +166,11 @@ class ShopzillaDE extends ResultFields
             ],
 
             [
-                $keyMutator,
                 $languageMutator,
                 $skuMutator,
                 $defaultCategoryMutator,
                 $barcodeMutator,
+                $keyMutator,
             ],
         ];
 
