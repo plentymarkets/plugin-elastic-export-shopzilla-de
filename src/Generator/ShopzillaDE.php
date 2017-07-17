@@ -267,9 +267,9 @@ class ShopzillaDE extends CSVPluginGenerator
             $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
         }
 
-        if(!is_null($shippingCost) && $shippingCost != '0.00')
+        if(!is_null($shippingCost) && $shippingCost > 0)
         {
-            return $shippingCost;
+            return number_format((float)$shippingCost, 2, ',', '');
         }
 
         return '';
@@ -286,7 +286,7 @@ class ShopzillaDE extends CSVPluginGenerator
         if(!is_null($variation) && !is_null($variation['data']['item']['id']))
         {
             $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
-            $this->shippingCostCache[$variation['data']['item']['id']] = number_format((float)$shippingCost, 2, ',', '');
+            $this->shippingCostCache[$variation['data']['item']['id']] = (float)$shippingCost;
         }
     }
 }
