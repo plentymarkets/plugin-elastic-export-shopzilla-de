@@ -1,5 +1,39 @@
 # Release Notes für Elastic Export Shopzilla.de
 
+## v2.0.0 (2017-07-21)
+
+### Behoben
+- Die Versandkosten werden jetzt korrekt ausgegeben.
+
+### Entfernt
+- Die Spalte **Versandgewicht** wurde entfernt, da dieses nicht in der Feedspezifikation vorkommt.
+- Die Spalte **Werbetext**, die bisher immer mit dem Wert **2** gefüllt wurde, wurde entfernt.
+- Die Spalte **Gebot**, die bisher immer leer gelassen wurde, wurde entfernt.
+
+### Geändert
+- Das **Trennzeichen** ist jetzt ein Tabulator, statt einem Leerzeichen.
+- Die Reihenfolge der Spalten wurde geändert.
+- Für die Spalte **Zustand** kann **Gebraucht** übermittelt werden.
+- Die Spalte **Bestand** kann nun mit Hilfe der Formateinstellung **Artikelverfügbarkeit überschreiben** bearbeitet werden.
+- Die Zeichenbegrenzung auf 256 Zeichen für **Titel** und **Beschreibung** wurde entfernt.
+- Die Spalte **Hersteller** wurde zu **Marke** umbenannt.
+- Die Spalte **Bezeichnung** wurde zu **Titel** umbenannt.
+- Die Spalte **SKU** wurde zu **ID** umbenannt.
+
+### Hinzugefügt
+- Die Spalte **Zusätzliche Bild-URL** wurde hinzugefügt.
+- Die Spalte **Artikelnummer** wurde hinzugefügt.
+- Die Spalte **Geschlecht** wurde hinzugefügt.
+- Die Spalte **Altersgruppe** wurde hinzugefügt.
+- Die Spalte **Größe** wurde hinzugefügt.
+- Die Spalte **Farbe** wurde hinzugefügt.
+- Die Spalte **Material** wurde hinzugefügt.
+- Die Spalte **Muster** wurde hinzugefügt.
+- Die Spalte **Produktgruppe** wurde hinzugefügt.
+- Die Spalte **Empfohlener Preis** wurde hinzugefügt.
+- **Merkmalverknüpfungen** für Shopzilla wurden hinzugefügt.
+
+
 ## v1.0.3 (2017-07-18)
 
 ### Geändert
