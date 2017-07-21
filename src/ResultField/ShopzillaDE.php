@@ -120,13 +120,13 @@ class ShopzillaDE extends ResultFields
             [
                 //item
                 'item.id',
+                'item.conditionApi.id',
                 'item.manufacturer.id',
 
                 //variation
                 'id',
                 'variation.availability.id',
                 'variation.model',
-                'variation.weightG',
 
                 //images
                 'images.all.urlMiddle',
@@ -163,6 +163,20 @@ class ShopzillaDE extends ResultFields
                 //barcodes
                 'barcodes.code',
                 'barcodes.type',
+
+                // Attributes
+                'attributes.attributeValueSetId',
+                'attributes.attributeId',
+                'attributes.valueId',
+
+                //properties
+                'properties.property.id',
+                'properties.property.valueType',
+                'properties.selection.name',
+                'properties.selection.lang',
+                'properties.texts.value',
+                'properties.texts.lang'
+
             ],
 
             [

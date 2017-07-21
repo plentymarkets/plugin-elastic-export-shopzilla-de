@@ -3,7 +3,9 @@
 namespace ElasticExportShopzillaDE\Generator;
 
 use ElasticExport\Helper\ElasticExportPriceHelper;
+use ElasticExport\Helper\ElasticExportPropertyHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
+use ElasticExportShopzillaDE\Helper\AttributeHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Services\ArrayHelper;
 use Plenty\Modules\DataExchange\Models\FormatSetting;
@@ -20,7 +22,17 @@ class ShopzillaDE extends CSVPluginGenerator
 {
     use Loggable;
 
-    const DELIMITER = " "; // SPACE
+    const DELIMITER = "\t";
+
+    const SHOPZILLA_DE              = 105.00;
+
+    const CHARACTER_TYPE_GENDER		= 'gender';
+    const CHARACTER_TYPE_AGE_GROUP	= 'age_group';
+
+    const CHARACTER_TYPE_COLOR		= 'color';
+    const CHARACTER_TYPE_SIZE		= 'size';
+    const CHARACTER_TYPE_PATTERN	= 'pattern';
+    const CHARACTER_TYPE_MATERIAL	= 'material';
 
     /**
      * @var ElasticExportCoreHelper
@@ -38,9 +50,19 @@ class ShopzillaDE extends CSVPluginGenerator
     private $elasticExportPriceHelper;
 
     /**
+     * @var ElasticExportPropertyHelper
+     */
+    private $elasticExportPropertyHelper;
+
+    /**
      * @var ArrayHelper
      */
     private $arrayHelper;
+
+    /**
+     * @var AttributeHelper
+     */
+    private $attributeHelper;
 
     /**
      * @var array
@@ -51,10 +73,12 @@ class ShopzillaDE extends CSVPluginGenerator
      * ShopzillaDE constructor.
      *
      * @param ArrayHelper $arrayHelper
+     * @param AttributeHelper $attributeHelper
      */
-    public function __construct(ArrayHelper $arrayHelper)
+    public function __construct(ArrayHelper $arrayHelper, AttributeHelper $attributeHelper)
     {
         $this->arrayHelper = $arrayHelper;
+        $this->attributeHelper = $attributeHelper;
     }
 
     /**
@@ -72,7 +96,11 @@ class ShopzillaDE extends CSVPluginGenerator
 
         $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
 
+        $this->elasticExportPropertyHelper = pluginApp(ElasticExportPropertyHelper::class);
+
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+
+        $this->attributeHelper->loadLinkedAttributeList($settings);
 
         $this->setDelimiter(self::DELIMITER);
 
@@ -191,22 +219,29 @@ class ShopzillaDE extends CSVPluginGenerator
     private function head():array
     {
         return array(
-            'Kategorie',
-            'Hersteller',
-            'Bezeichnung',
+            'ID',
+            'Titel',
             'Beschreibung',
+            'Kategorie',
             'Artikel-URL',
             'Bild-URL',
-            'SKU',
-            'Bestand',
-            'Versandgewicht',
+            'Zusätzliche Bild-URL',
             'Zustand',
-            'Versandkosten',
-            'Gebot',
-            'Werbetext',
+            'Bestand',
+            'Marke',
             'EAN',
-            'Preis',
+            'Artikelnummer',
+            'Versandkosten',
+            'Geschlecht',
+            'Altersgruppe',
+            'Größe',
+            'Farbe',
+            'Material',
+            'Muster',
+            'Produktgruppe',
             'Grundpreis',
+            'Empfohlener Preis',
+            'Preis',
         );
     }
 
@@ -221,26 +256,37 @@ class ShopzillaDE extends CSVPluginGenerator
         // Get the price list
         $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
 
+        $imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 11, 'variationImages');
+
+        $variationAttributes = $this->attributeHelper->getVariationAttributes($variation);
+
         // Only variations with the Retail Price greater than zero will be handled
         if(!is_null($priceList['price']) && (float)$priceList['price'] > 0)
         {
             $data = [
-                'Kategorie'         => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
-                'Hersteller'        => $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']),
-                'Bezeichnung'       => $this->elasticExportHelper->getMutatedName($variation, $settings, 256),
-                'Beschreibung'      => $this->elasticExportHelper->getMutatedDescription($variation, $settings, 256),
-                'Artikel-URL'       => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
-                'Bild-URL'          => $this->elasticExportHelper->getMainImage($variation, $settings),
-                'SKU'               => (string)$this->elasticExportHelper->generateSku($variation['id'], (float)$settings->get('referrerId'), 0, (string)$variation['data']['skus'][0]['sku']),
-                'Bestand'           => 'Auf Lager',
-                'Versandgewicht'    => $variation['data']['variation']['weightG'],
-                'Zustand'           => 'Neu',
-                'Versandkosten'     => $this->getShippingCost($variation),
-                'Gebot'             => '',
-                'Werbetext'         => '2',
-                'EAN'               => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
-                'Preis'             => $priceList['price'],
-                'Grundpreis'        => $this->elasticExportPriceHelper->getBasePrice($variation, (float)$priceList['price'], $settings->get('lang')),
+                'ID'                    => (string)$this->elasticExportHelper->generateSku($variation['id'], (float)$settings->get('referrerId'), 0, (string)$variation['data']['skus'][0]['sku']),
+                'Titel'                 => $this->elasticExportHelper->getMutatedName($variation, $settings),
+                'Beschreibung'          => $this->elasticExportHelper->getMutatedDescription($variation, $settings),
+                'Kategorie'             => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
+                'Artikel-URL'           => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
+                'Bild-URL'              => $imageList[0],
+                'Zusätzliche Bild-URL'  => $this->getAdditionalImages($imageList),
+                'Zustand'               => $this->getCondition((int)$variation['data']['item']['conditionApi']['id']),
+                'Bestand'               => $this->elasticExportHelper->getAvailability($variation, $settings, false),
+                'Marke'                 => $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']),
+                'EAN'                   => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
+                'Artikelnummer'         => (string)$variation['data']['variation']['model'],
+                'Versandkosten'         => $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings),
+                'Geschlecht'            => $this->elasticExportPropertyHelper->getProperty($variation, self::CHARACTER_TYPE_GENDER, self::SHOPZILLA_DE),
+                'Altersgruppe'          => $this->elasticExportPropertyHelper->getProperty($variation, self::CHARACTER_TYPE_AGE_GROUP, self::SHOPZILLA_DE),
+                'Größe'                 => $variationAttributes[self::CHARACTER_TYPE_SIZE],
+                'Farbe'                 => $variationAttributes[self::CHARACTER_TYPE_COLOR],
+                'Material'              => $variationAttributes[self::CHARACTER_TYPE_MATERIAL],
+                'Muster'                => $variationAttributes[self::CHARACTER_TYPE_PATTERN],
+                'Produktgruppe'         => (int)$variation['data']['item']['id'],
+                'Grundpreis'            => $this->elasticExportPriceHelper->getBasePrice($variation, (float)$priceList['price'], $settings->get('lang')),
+                'Empfohlener Preis'     => $priceList['recommendedRetailPrice'],
+                'Preis'                 => $priceList['price'],
             ];
 
             $this->addCSVContent(array_values($data));
@@ -254,25 +300,18 @@ class ShopzillaDE extends CSVPluginGenerator
     }
 
     /**
-     * Get the shipping cost.
-     *
-     * @param array $variation
+     * @param int       $conditionId
      * @return string
      */
-    private function getShippingCost($variation):string
+    private function getCondition(int $conditionId):string
     {
-        $shippingCost = null;
-        if(isset($this->shippingCostCache) && array_key_exists($variation['data']['item']['id'], $this->shippingCostCache))
+        switch($conditionId)
         {
-            $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
+            case 0:
+                return 'Neu';
+            default:
+                return 'Gebraucht';
         }
-
-        if(!is_null($shippingCost) && $shippingCost > 0)
-        {
-            return number_format((float)$shippingCost, 2, ',', '');
-        }
-
-        return '';
     }
 
     /**
@@ -288,5 +327,25 @@ class ShopzillaDE extends CSVPluginGenerator
             $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
             $this->shippingCostCache[$variation['data']['item']['id']] = (float)$shippingCost;
         }
+    }
+
+    /**
+     * Returns a string of all additional picture-URLs separated by ","
+     *
+     * @param array $imageList
+     * @return string
+     */
+    private function getAdditionalImages(array $imageList):string
+    {
+        $imageListString = '';
+
+        unset($imageList[0]);
+
+        if(count($imageList))
+        {
+            $imageListString = implode(',', $imageList);
+        }
+
+        return $imageListString;
     }
 }
