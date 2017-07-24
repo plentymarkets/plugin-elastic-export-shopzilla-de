@@ -285,7 +285,7 @@ class ShopzillaDE extends CSVPluginGenerator
                 'Muster'                => $variationAttributes[self::CHARACTER_TYPE_PATTERN],
                 'Produktgruppe'         => (int)$variation['data']['item']['id'],
                 'Grundpreis'            => $this->elasticExportPriceHelper->getBasePrice($variation, (float)$priceList['price'], $settings->get('lang')),
-                'Empfohlener Preis'     => $priceList['recommendedRetailPrice'],
+                'Empfohlener Preis'     => $priceList['recommendedRetailPrice'] > $priceList['price'] ? $priceList['recommendedRetailPrice'] : '',
                 'Preis'                 => $priceList['price'],
             ];
 
