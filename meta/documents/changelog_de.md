@@ -6,12 +6,12 @@
 - Die Versandkosten werden jetzt korrekt ausgegeben.
 
 ### Entfernt
-- Die Spalte **Versandgewicht** wurde entfernt, da dieses nicht in der Feedspezifikation vorkommt.
+- Die Spalte **Versandgewicht** wurde entfernt, da dieses nicht in der Feed-Spezifikation vorkommt.
 - Die Spalte **Werbetext**, die bisher immer mit dem Wert **2** gefüllt wurde, wurde entfernt.
-- Die Spalte **Gebot**, die bisher immer leer gelassen wurde, wurde entfernt.
+- Die Spalte **Gebot** wurde entfernt.
 
 ### Geändert
-- Das **Trennzeichen** ist jetzt ein Tabulator, statt einem Leerzeichen.
+- Das **Trennzeichen** ist jetzt statt einem Leerzeichen ein Tabulator.
 - Die Reihenfolge der Spalten wurde geändert.
 - Für die Spalte **Zustand** kann **Gebraucht** übermittelt werden.
 - Die Spalte **Bestand** kann nun mit Hilfe der Formateinstellung **Artikelverfügbarkeit überschreiben** bearbeitet werden.
