@@ -26,13 +26,13 @@ class ShopzillaDE extends CSVPluginGenerator
 
     const SHOPZILLA_DE              = 105.00;
 
-    const CHARACTER_TYPE_GENDER		= 'gender';
-    const CHARACTER_TYPE_AGE_GROUP	= 'age_group';
+    const PROPERTY_TYPE_GENDER		= 'gender';
+    const PROPERTY_TYPE_AGE_GROUP	= 'age_group';
 
-    const CHARACTER_TYPE_COLOR		= 'color';
-    const CHARACTER_TYPE_SIZE		= 'size';
-    const CHARACTER_TYPE_PATTERN	= 'pattern';
-    const CHARACTER_TYPE_MATERIAL	= 'material';
+    const PROPERTY_TYPE_COLOR		= 'color';
+    const PROPERTY_TYPE_SIZE		= 'size';
+    const PROPERTY_TYPE_PATTERN		= 'pattern';
+    const PROPERTY_TYPE_MATERIAL	= 'material';
 
     /**
      * @var ElasticExportCoreHelper
@@ -277,12 +277,12 @@ class ShopzillaDE extends CSVPluginGenerator
                 'EAN'                   => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
                 'Artikelnummer'         => (string)$variation['data']['variation']['model'],
                 'Versandkosten'         => $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings),
-                'Geschlecht'            => $this->elasticExportPropertyHelper->getProperty($variation, self::CHARACTER_TYPE_GENDER, self::SHOPZILLA_DE),
-                'Altersgruppe'          => $this->elasticExportPropertyHelper->getProperty($variation, self::CHARACTER_TYPE_AGE_GROUP, self::SHOPZILLA_DE),
-                'Größe'                 => $variationAttributes[self::CHARACTER_TYPE_SIZE],
-                'Farbe'                 => $variationAttributes[self::CHARACTER_TYPE_COLOR],
-                'Material'              => $variationAttributes[self::CHARACTER_TYPE_MATERIAL],
-                'Muster'                => $variationAttributes[self::CHARACTER_TYPE_PATTERN],
+                'Geschlecht'            => $this->elasticExportPropertyHelper->getProperty($variation, self::PROPERTY_TYPE_GENDER, self::SHOPZILLA_DE),
+                'Altersgruppe'          => $this->elasticExportPropertyHelper->getProperty($variation, self::PROPERTY_TYPE_AGE_GROUP, self::SHOPZILLA_DE),
+                'Größe'                 => $variationAttributes[self::PROPERTY_TYPE_SIZE],
+                'Farbe'                 => $variationAttributes[self::PROPERTY_TYPE_COLOR],
+                'Material'              => $variationAttributes[self::PROPERTY_TYPE_MATERIAL],
+                'Muster'                => $variationAttributes[self::PROPERTY_TYPE_PATTERN],
                 'Produktgruppe'         => (int)$variation['data']['item']['id'],
                 'Grundpreis'            => $this->elasticExportPriceHelper->getBasePrice($variation, (float)$priceList['price'], $settings->get('lang')),
                 'Empfohlener Preis'     => $priceList['recommendedRetailPrice'] > $priceList['price'] ? $priceList['recommendedRetailPrice'] : '',

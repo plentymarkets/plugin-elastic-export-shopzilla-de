@@ -11,14 +11,19 @@ use Plenty\Modules\Item\Attribute\Models\Attribute;
 use Plenty\Modules\Item\Attribute\Models\AttributeValueName;
 use Plenty\Repositories\Models\PaginatedResult;
 
+/**
+ * Class AttributeHelper
+ *
+ * @package ElasticExportShopzillaDE\Helper
+ */
 class AttributeHelper
 {
-    const SHOPZILLA_DE              = 105.00;
+    const SHOPZILLA_DE = 105.00;
 
-    const CHARACTER_TYPE_COLOR						= 'color';
-    const CHARACTER_TYPE_SIZE						= 'size';
-    const CHARACTER_TYPE_PATTERN					= 'pattern';
-    const CHARACTER_TYPE_MATERIAL					= 'material';
+    const PROPERTY_TYPE_COLOR	 = 'color';
+    const PROPERTY_TYPE_SIZE	 = 'size';
+    const PROPERTY_TYPE_PATTERN	 = 'pattern';
+    const PROPERTY_TYPE_MATERIAL = 'material';
 
     /**
      * @var array
@@ -34,14 +39,17 @@ class AttributeHelper
      * @var ElasticExportPropertyHelper
      */
     private $elasticExportPropertyHelper;
+
     /**
      * @var AttributeRepositoryContract $attributeRepositoryContract
      */
     private $attributeRepositoryContract;
+
     /**
      * @var AttributeValueRepositoryContract
      */
     private $attributeValueRepositoryContract;
+
     /**
      * @var AttributeValueNameRepositoryContract
      */
@@ -49,6 +57,7 @@ class AttributeHelper
 
     /**
      * AttributeHelper constructor.
+	 *
      * @param AttributeRepositoryContract $attributeRepositoryContract
      * @param AttributeValueRepositoryContract $attributeValueRepositoryContract
      * @param AttributeValueNameRepositoryContract $attributeValueNameRepositoryContract
@@ -89,10 +98,10 @@ class AttributeHelper
         }
 
         $typeList = array(
-            self::CHARACTER_TYPE_COLOR,
-            self::CHARACTER_TYPE_SIZE,
-            self::CHARACTER_TYPE_PATTERN,
-            self::CHARACTER_TYPE_MATERIAL
+            self::PROPERTY_TYPE_COLOR,
+            self::PROPERTY_TYPE_SIZE,
+            self::PROPERTY_TYPE_PATTERN,
+            self::PROPERTY_TYPE_MATERIAL
         );
 
         foreach ($typeList as $type)
