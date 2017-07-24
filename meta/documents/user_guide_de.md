@@ -265,7 +265,7 @@ In der folgenden Tabelle finden Sie spezifische Hinweise zu den Einstellungen, F
         </td>
         <td>
             <b>Erlaubte Werte:</b> männlich, weiblich, nicht geschlechtspezifisch<br>
-            <b>Inhalt:</b> Der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Text</b>, das mit <b>Shopzilla.de » Geschlecht</b> verknüpft wurde.
+            <b>Inhalt:</b> Der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Auswahl</b>, das mit <b>Shopzilla.de » Geschlecht</b> verknüpft wurde.
         </td>        
     </tr>
     <tr>
@@ -274,7 +274,7 @@ In der folgenden Tabelle finden Sie spezifische Hinweise zu den Einstellungen, F
         </td>
         <td>
             <b>Erlaubte Werte:</b> Erwachsene, Kinder<br>
-            <b>Inhalt:</b> Der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Text</b>, das mit <b>Shopzilla.de » Altersgruppe</b> verknüpft wurde.
+            <b>Inhalt:</b> Der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Auswahl</b>, das mit <b>Shopzilla.de » Altersgruppe</b> verknüpft wurde.
         </td>        
     </tr>
     <tr>
@@ -282,7 +282,7 @@ In der folgenden Tabelle finden Sie spezifische Hinweise zu den Einstellungen, F
             Größe
         </td>
         <td>
-            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Text</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Text</b>, das mit <b>Shopzilla.de » Größe</b> verknüpft wurde.
+            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Text</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Auswahl</b>, das mit <b>Shopzilla.de » Größe</b> verknüpft wurde.
         </td>        
     </tr>
     <tr>
@@ -290,7 +290,7 @@ In der folgenden Tabelle finden Sie spezifische Hinweise zu den Einstellungen, F
             Farbe
         </td>
         <td>
-            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Farbe</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Text</b>, das mit <b>Shopzilla.de » Farbe</b> verknüpft wurde.
+            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Farbe</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Auswahl</b>, das mit <b>Shopzilla.de » Farbe</b> verknüpft wurde.
         </td>        
     </tr>
     <tr>
@@ -298,7 +298,7 @@ In der folgenden Tabelle finden Sie spezifische Hinweise zu den Einstellungen, F
             Material
         </td>
         <td>
-            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Material</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Text</b>, das mit <b>Shopzilla.de » Material</b> verknüpft wurde.
+            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Material</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Auswahl</b>, das mit <b>Shopzilla.de » Material</b> verknüpft wurde.
         </td>        
     </tr>
     <tr>
@@ -306,7 +306,7 @@ In der folgenden Tabelle finden Sie spezifische Hinweise zu den Einstellungen, F
             Muster
         </td>
         <td>
-            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Muster</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Text</b>, das mit <b>Shopzilla.de » Muster</b> verknüpft wurde.
+            <b>Inhalt:</b> Der Wert eines Attributs, bei dem die Attributverknüpfung für <b>Google Shopping</b> mit <b>Muster</b> gesetzt wurde. Alternativ der Wert eines Merkmals vom Typ <b>Text</b> oder <b>Auswahl</b>, das mit <b>Shopzilla.de » Muster</b> verknüpft wurde.
         </td>        
     </tr>
     <tr>
