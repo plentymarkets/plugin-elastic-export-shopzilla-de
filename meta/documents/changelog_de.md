@@ -3,8 +3,8 @@
 ## v1.1.1 (2017-08-25)
 
 ### Behoben
-- Es wurde ein Fehler behoben, bei dem der Versandkosten nicht korrekt zwischengespeichert wurde.
-- Es wurde ein Fehler behoben, bei dem der Lagerfilter nicht korrekt funktioniert wurde.
+- Es wurde ein Fehler behoben, bei dem die Versandkosten nicht korrekt zwischengespeichert wurden.
+- Es wurde ein Fehler behoben, bei dem der Lagerfilter nicht korrekt funktionierte.
 
 ## v1.1.0 (2017-07-26)
 
