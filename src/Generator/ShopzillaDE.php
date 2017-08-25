@@ -245,7 +245,7 @@ class ShopzillaDE extends CSVPluginGenerator
                 'Beschreibung'          => $this->elasticExportHelper->getMutatedDescription($variation, $settings),
                 'Kategorie'             => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
                 'Artikel-URL'           => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
-                'Bild-URL'              => $imageList[0],
+                'Bild-URL'              => isset($imageList[0]) ? $imageList[0] : '',
                 'Zusätzliche Bild-URL'  => $this->getAdditionalImages($imageList),
                 'Zustand'               => $this->getCondition((int)$variation['data']['item']['conditionApi']['id']),
                 'Bestand'               => $this->elasticExportHelper->getAvailability($variation, $settings, false),
