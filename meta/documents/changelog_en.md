@@ -1,5 +1,11 @@
 # Release Notes for Elastic Export Shopzilla.de
 
+## v1.1.1 (2017-08-25)
+
+### Fixed
+- An issue was fixed which caused the shipping costs not to be cached properly.
+- An issue was fixed which caused the stock filter not to be work properly.
+
 ## v1.1.0 (2017-07-26)
 
 ### Fixed

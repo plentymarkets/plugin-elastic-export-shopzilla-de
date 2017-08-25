@@ -106,8 +106,6 @@ class ShopzillaDE extends CSVPluginGenerator
 
         $this->addCSVContent($this->head());
 
-        $startTime = microtime(true);
-
         if($elasticSearch instanceof VariationElasticSearchScrollRepositoryContract)
         {
             // Initiate the counter for the variations limit
@@ -116,25 +114,14 @@ class ShopzillaDE extends CSVPluginGenerator
 
             do
             {
-                // Current number of lines written
-                $this->getLogger(__METHOD__)->debug('ElasticExportShopzillaDE::logs.writtenLines', [
-                    'Lines written' => $limit,
-                ]);
-
                 // Stop writing if limit is reached
                 if($limitReached === true)
                 {
                     break;
                 }
 
-                $esStartTime = microtime(true);
-
                 // Get the data from Elastic Search
                 $resultList = $elasticSearch->execute();
-
-                $this->getLogger(__METHOD__)->debug('ElasticExportShopzillaDE::logs.esDuration', [
-                    'Elastic Search duration' => microtime(true) - $esStartTime,
-                ]);
 
                 if(count($resultList['error']) > 0)
                 {
@@ -144,8 +131,6 @@ class ShopzillaDE extends CSVPluginGenerator
 
                     break;
                 }
-
-                $buildRowStartTime = microtime(true);
 
                 if(is_array($resultList['documents']) && count($resultList['documents']) > 0)
                 {
@@ -163,10 +148,6 @@ class ShopzillaDE extends CSVPluginGenerator
                         // If filtered by stock is set and stock is negative, then skip the variation
                         if ($this->elasticExportStockHelper->isFilteredByStock($variation, $filter) === true)
                         {
-                            $this->getLogger(__METHOD__)->info('ElasticExportShopzillaDE::logs.variationNotPartOfExportStock', [
-                                'VariationId' => $variation['id']
-                            ]);
-
                             continue;
                         }
 
@@ -197,18 +178,10 @@ class ShopzillaDE extends CSVPluginGenerator
                         // New line was added
                         $limit++;
                     }
-
-                    $this->getLogger(__METHOD__)->debug('ElasticExportShopzillaDE::logs.buildRowDuration', [
-                        'Build rows duration' => microtime(true) - $buildRowStartTime,
-                    ]);
                 }
 
             } while ($elasticSearch->hasNext());
         }
-
-        $this->getLogger(__METHOD__)->debug('ElasticExportShopzillaDE::logs.fileGenerationDuration', [
-            'Whole file generation duration' => microtime(true) - $startTime,
-        ]);
     }
 
     /**
@@ -256,13 +229,16 @@ class ShopzillaDE extends CSVPluginGenerator
         // Get the price list
         $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
 
-        $imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 11, 'variationImages');
-
-        $variationAttributes = $this->attributeHelper->getVariationAttributes($variation);
-
         // Only variations with the Retail Price greater than zero will be handled
         if(!is_null($priceList['price']) && (float)$priceList['price'] > 0)
         {
+            // Get shipping cost
+            $shippingCost = $this->getShippingCost($variation);
+
+            $imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 11, 'variationImages');
+
+            $variationAttributes = $this->attributeHelper->getVariationAttributes($variation);
+
             $data = [
                 'ID'                    => (string)$this->elasticExportHelper->generateSku($variation['id'], (float)$settings->get('referrerId'), 0, (string)$variation['data']['skus'][0]['sku']),
                 'Titel'                 => $this->elasticExportHelper->getMutatedName($variation, $settings),
@@ -276,7 +252,7 @@ class ShopzillaDE extends CSVPluginGenerator
                 'Marke'                 => $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']),
                 'EAN'                   => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
                 'Artikelnummer'         => (string)$variation['data']['variation']['model'],
-                'Versandkosten'         => $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings),
+                'Versandkosten'         => $shippingCost,
                 'Geschlecht'            => $this->elasticExportPropertyHelper->getProperty($variation, self::PROPERTY_TYPE_GENDER, self::SHOPZILLA_DE),
                 'Altersgruppe'          => $this->elasticExportPropertyHelper->getProperty($variation, self::PROPERTY_TYPE_AGE_GROUP, self::SHOPZILLA_DE),
                 'Größe'                 => $variationAttributes[self::PROPERTY_TYPE_SIZE],
@@ -291,16 +267,12 @@ class ShopzillaDE extends CSVPluginGenerator
 
             $this->addCSVContent(array_values($data));
         }
-        else
-        {
-            $this->getLogger(__METHOD__)->info('ElasticExportShopzillaDE::logs.variationNotPartOfExportPrice', [
-                'VariationId' => $variation['id']
-            ]);
-        }
     }
 
     /**
-     * @param int       $conditionId
+     * Get the condition of a variation.
+     *
+     * @param int $conditionId
      * @return string
      */
     private function getCondition(int $conditionId):string
@@ -312,6 +284,28 @@ class ShopzillaDE extends CSVPluginGenerator
             default:
                 return 'Gebraucht';
         }
+    }
+
+    /**
+     * Get the shipping cost.
+     *
+     * @param $variation
+     * @return string
+     */
+    private function getShippingCost($variation):string
+    {
+        $shippingCost = null;
+        if(isset($this->shippingCostCache) && array_key_exists($variation['data']['item']['id'], $this->shippingCostCache))
+        {
+            $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
+        }
+
+        if(!is_null($shippingCost) && $shippingCost > 0)
+        {
+            return number_format((float)$shippingCost, 2, ',', '');
+        }
+
+        return '';
     }
 
     /**

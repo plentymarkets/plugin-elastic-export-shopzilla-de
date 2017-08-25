@@ -3,7 +3,7 @@
 
 <div class="container-toc"></div>
 
-## 1 Registering with Shopzilla
+## 1 Registering with Shopzilla.de
 
 Shopzilla is a price comparison platform.
 
