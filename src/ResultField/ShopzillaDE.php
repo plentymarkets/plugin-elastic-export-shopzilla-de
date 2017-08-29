@@ -126,6 +126,7 @@ class ShopzillaDE extends ResultFields
                 //variation
                 'id',
                 'variation.availability.id',
+                'variation.stockLimitation',
                 'variation.model',
 
                 //images
@@ -175,7 +176,9 @@ class ShopzillaDE extends ResultFields
                 'properties.selection.name',
                 'properties.selection.lang',
                 'properties.texts.value',
-                'properties.texts.lang'
+                'properties.texts.lang',
+                'properties.valueInt',
+                'properties.valueFloat',
 
             ],
 
@@ -211,6 +214,7 @@ class ShopzillaDE extends ResultFields
         $keyList = [
             //item
             'item.id',
+            'item.conditionApi.id',
             'item.manufacturer.id',
 
             //variation
@@ -250,6 +254,12 @@ class ShopzillaDE extends ResultFields
 
             //barcodes
             'barcodes',
+
+            //attributes
+            'attributes',
+
+            //properties
+            'properties',
         ];
 
         $nestedKeyList['nestedKeys'] = [
@@ -308,6 +318,25 @@ class ShopzillaDE extends ResultFields
             'barcodes' => [
                 'code',
                 'type',
+            ],
+
+            //attributes
+            'attributes' => [
+                'attributeValueSetId',
+                'attributeId',
+                'valueId',
+            ],
+
+            //proprieties
+            'properties' => [
+                'property.id',
+                'property.valueType',
+                'selection.name',
+                'selection.lang',
+                'texts.value',
+                'texts.lang',
+                'valueInt',
+                'valueFloat',
             ],
         ];
 

@@ -12,7 +12,7 @@ use Plenty\Plugin\DataExchangeServiceProvider;
 class ElasticExportShopzillaDEServiceProvider extends DataExchangeServiceProvider
 {
     /**
-     * Abstract function definition for registering the service provider.
+     * Function definition for registering the service provider.
      */
     public function register()
     {

@@ -1,5 +1,11 @@
 # Release Notes für Elastic Export Shopzilla.de
 
+## v1.1.1 (2017-08-29)
+
+### Behoben
+- Es wurde ein Fehler behoben, bei dem die Versandkosten nicht korrekt zwischengespeichert wurden.
+- Es wurde ein Fehler behoben, bei dem der Lagerfilter nicht korrekt funktionierte.
+
 ## v1.1.0 (2017-07-26)
 
 ### Behoben
