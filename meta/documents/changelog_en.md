@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Shopzilla.de
 
+## v1.1.3 (2018-03-26)
+
+### Added
+- Added information to the user guide.
+
 ## v1.1.2 (2018-02-16)
 
 ### Changed
