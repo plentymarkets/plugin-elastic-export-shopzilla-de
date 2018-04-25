@@ -3,7 +3,7 @@
   "namespace": "ElasticExportShopzillaDE",
   "type": "export",
   "serviceProvider": "ElasticExportShopzillaDE\\ElasticExportShopzillaDEServiceProvider",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
   "pluginIcon": "icon_plugin_md.png",
   "price": 0.00,
@@ -12,9 +12,7 @@
     "de": "Die Integration des Datenformats Shopzilla-Plugin ermöglicht die Artikeldatenübertragung zum Preisportal shopzilla.de über den elastischen Export.",
     "en": "The integration of the data format Shopzilla-Plugin enables the transfer of item data to the price search engine shopzilla.de via the elastic export."
   },
-  "categories": [
-    "3523"
-  ],
+  "categories": ["3523"],
   "require": ["ElasticExport"],
   "author": "plentymarkets GmbH",
   "authorIcon": "icon_author_xs.png",
