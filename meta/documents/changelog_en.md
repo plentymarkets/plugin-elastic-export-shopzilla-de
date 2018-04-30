@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Shopzilla.de
 
+## v1.1.5 (2018-04-30)
+
+### Changed
+- Laravel 5.5 update.
+
 ## v1.1.4 (2018-04-25)
 
 ### Changed
