@@ -5,6 +5,7 @@ namespace ElasticExportShopzillaDE\Generator;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportPropertyHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
+use ElasticExport\Services\FiltrationService;
 use ElasticExportShopzillaDE\Helper\AttributeHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Services\ArrayHelper;
@@ -70,6 +71,11 @@ class ShopzillaDE extends CSVPluginGenerator
     private $shippingCostCache;
 
     /**
+     * @var FiltrationService
+     */
+    private $filtrationService;
+
+    /**
      * ShopzillaDE constructor.
      *
      * @param ArrayHelper $arrayHelper
@@ -91,14 +97,12 @@ class ShopzillaDE extends CSVPluginGenerator
     protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
-
         $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
-
         $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
-
         $this->elasticExportPropertyHelper = pluginApp(ElasticExportPropertyHelper::class);
 
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+        $this->filtrationService = pluginApp(FiltrationService::class, ['settings' => $settings, 'filterSettings' => $filter]);
 
         $this->attributeHelper->loadLinkedAttributeList($settings);
 
@@ -146,7 +150,7 @@ class ShopzillaDE extends CSVPluginGenerator
                         }
 
                         // If filtered by stock is set and stock is negative, then skip the variation
-                        if ($this->elasticExportStockHelper->isFilteredByStock($variation, $filter) === true)
+                        if ($this->filtrationService->filter($variation))
                         {
                             continue;
                         }

@@ -87,7 +87,7 @@ class ShopzillaDE extends ResultFields
         /**
          * @var LanguageMutator $languageMutator
          */
-        $languageMutator = pluginApp(LanguageMutator::class, [[$settings->get('lang')]]);
+        $languageMutator = pluginApp(LanguageMutator::class, ['languages' => [$settings->get('lang')]]);
 
         /**
          * @var SkuMutator $skuMutator

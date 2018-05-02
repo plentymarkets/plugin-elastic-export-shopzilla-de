@@ -1,5 +1,16 @@
 # Release Notes für Elastic Export Shopzilla.de
 
+## v1.1.5 (2018-04-30)
+
+### Geändert
+- Laravel 5.5 Update.
+
+## v1.1.4 (2018-04-25)
+
+### Geändert
+- Die Filtrierung der Varianten wird durch die Klasse FiltrationService vorgenommen.
+- Vorschaubilder aktualisiert.
+
 ## v1.1.3 (2018-03-26)
 
 ### Hinzugefügt
