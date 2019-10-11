@@ -9,19 +9,19 @@ Shopzilla ist eine Preisvergleichsplattform.
 
 ## 2 Das Format ShopzillaDE-Plugin in plentymarkets einrichten
 
-Mit der Installation dieses Plugins erhalten Sie das Exportformat **ShopzillaDE-Plugin**, mit dem Sie Daten über den elastischen Export zu Shopping24.de übertragen. Um dieses Format für den elastischen Export nutzen zu können, installieren Sie zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
+Mit der Installation dieses Plugins erhältst du das Exportformat **ShopzillaDE-Plugin**, mit dem du Daten über den elastischen Export zu Shopping24.de überträgst. Um dieses Format für den elastischen Export nutzen zu können, installiere zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
 
-Sobald beide Plugins in Ihrem System installiert sind, kann das Exportformat **ShopzillaDE-Plugin** erstellt werden. Weitere Informationen finden Sie auf der Handbuchseite [Elastischer Export](https://knowledge.plentymarkets.com/basics/datenaustausch/elastischer-export).
+Sobald beide Plugins in deinem System installiert sind, kann das Exportformat **ShopzillaDE-Plugin** erstellt werden. Weitere Informationen findest du auf der Handbuchseite [Elastischer Export](https://knowledge.plentymarkets.com/daten/daten-exportieren/elastischer-export).
 
 Neues Exportformat erstellen:
 
-1. Öffnen Sie das Menü **Daten » Elastischer Export**.
-2. Klicken Sie auf **Neuer Export**.
-3. Nehmen Sie die Einstellungen vor. Beachten Sie dazu die Erläuterungen in Tabelle 1.
-4. **Speichern** Sie die Einstellungen.
+1. Öffne das Menü **Daten » Elastischer Export**.
+2. Klicke auf **Neuer Export**.
+3. Nimm die Einstellungen vor. Beachte dazu die Erläuterungen in Tabelle 1.
+4. **Speichere** die Einstellungen.<br/>
 → Eine ID für das Exportformat **ShopzillaDE-Plugin** wird vergeben und das Exportformat erscheint in der Übersicht **Exporte**.
 
-In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **ShopzillaDE-Plugin**.
+In der folgenden Tabelle findest du Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **ShopzillaDE-Plugin**.
 
 | **Einstellung**                                     | **Erläuterung** | 
 | :---                                                | :--- |
@@ -40,8 +40,8 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 | **Produkt-URL**                                     | Wählen, ob die URL des Artikels oder der Variante an das Preisportal übertragen wird. Varianten URLs können nur in Kombination mit dem Ceres Webshop übertragen werden. |
 | **Mandant**                                         | Mandant wählen. Diese Einstellung wird für den URL-Aufbau verwendet. |
 | **URL-Parameter**                                   | Suffix für die Produkt-URL eingeben, wenn dies für den Export erforderlich ist. Die Produkt-URL wird dann um die eingegebene Zeichenkette erweitert, wenn weiter oben die Option **übertragen** für die Produkt-URL aktiviert wurde. |
-| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. |
-| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. |
 | **Sprache**                                         | Sprache aus der Dropdown-Liste wählen. |
 | **Artikelname**                                     | **Name 1**, **Name 2** oder **Name 3** wählen. Die Namen sind im Tab **Texte** eines Artikels gespeichert. Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge des Artikelnamen beim Export vorgibt. |
 | **Vorschautext**                                    | Diese Option ist für dieses Format nicht relevant. |
@@ -91,4 +91,4 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 
 ## 4 Lizenz
 
-Das gesamte Projekt unterliegt der GNU AFFERO GENERAL PUBLIC LICENSE – weitere Informationen finden Sie in der [LICENSE.md](https://github.com/plentymarkets/plugin-elastic-export-shopzilla-de/blob/master/LICENSE.md).
+Das gesamte Projekt unterliegt der GNU AFFERO GENERAL PUBLIC LICENSE – weitere Informationen findest du in der [LICENSE.md](https://github.com/plentymarkets/plugin-elastic-export-shopzilla-de/blob/master/LICENSE.md).
