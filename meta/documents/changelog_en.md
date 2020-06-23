@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Shopzilla.de
 
+## v1.1.9 (2020-06-24)
+
+### Changed
+- The plugin description was moved to the plentymarkets manual.
+
 ## v1.1.8 (2019-10-11)
 
 ### Changed
@@ -97,6 +102,6 @@
 - We now use a different value to get the image URLs for plugins working with elastic search.
 
 ## v1.0.0 (2017-03-10)
- 
+
 ### Added
 - Added initial plugin files

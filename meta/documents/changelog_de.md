@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Shopzilla.de
 
+## v1.1.9 (2020-06-24)
+
+### Geändert
+- Die Plugin-Beschreibung wurde in das plentymarkets Handbuch umgezogen.
+
 ## v1.1.8 (2019-10-11)
 
 ### Geändert
