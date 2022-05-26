@@ -127,7 +127,7 @@ class ShopzillaDE extends CSVPluginGenerator
                 // Get the data from Elastic Search
                 $resultList = $elasticSearch->execute();
 
-                if(count($resultList['error']) > 0)
+                if(count($resultList['error'] ?? []) > 0)
                 {
                     $this->getLogger(__METHOD__)->error('ElasticExportShopzillaDE::logs.occurredElasticSearchErrors', [
                         'Error message' => $resultList['error'],
@@ -136,7 +136,7 @@ class ShopzillaDE extends CSVPluginGenerator
                     break;
                 }
 
-                if(is_array($resultList['documents']) && count($resultList['documents']) > 0)
+                if(is_array($resultList['documents']) && count($resultList['documents'] ?? []) > 0)
                 {
                     $previousItemId = null;
 
@@ -339,7 +339,7 @@ class ShopzillaDE extends CSVPluginGenerator
 
         unset($imageList[0]);
 
-        if(count($imageList))
+        if(count($imageList ?? []))
         {
             $imageListString = implode(',', $imageList);
         }
