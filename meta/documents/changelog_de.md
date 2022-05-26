@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Shopzilla.de
 
+## v1.1.10 (2022-05-26)
+
+### Geändert
+- UPDATE - Zusätzliche Updates für Kompatibilität mit PHP 8.
+
 ## v1.1.9 (2020-06-24)
 
 ### Geändert
