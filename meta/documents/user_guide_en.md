@@ -2,7 +2,7 @@
 # ElasticExportShopzillaDE plugin user guide
 
 <div class="alert alert-info" role="alert">
-  To find out how to set up the plugin for the export format ElasticExportShopzillaDE, visit the <a href="https://knowledge.plentymarkets.com/en/markets/price-search-engines/shopzilla" target="_blank">plentymarkets manual</a>.
+  To find out how to set up the plugin for the export format ElasticExportShopzillaDE, visit the <a href="https://knowledge.plentymarkets.com/en-gb/manual/main/markets/shopzilla.html" target="_blank">plentymarkets manual</a>.
 </div>
 
 ## License

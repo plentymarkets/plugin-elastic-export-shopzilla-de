@@ -3,7 +3,7 @@
   "namespace": "ElasticExportShopzillaDE",
   "type": "export",
   "serviceProvider": "ElasticExportShopzillaDE\\ElasticExportShopzillaDEServiceProvider",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
   "pluginIcon": "icon_plugin_md.png",
   "price": 0.00,
@@ -21,5 +21,8 @@
   "marketplaceName": {
     "de": "shopzilla.de",
     "en": "shopzilla.de"
-  }
+  },
+  "platform": {
+    "php": ">=7.3 <8.1"
+}
 }
